@@ -55,7 +55,11 @@ puis recommencez le `git push`.
 
 > 📸 **TP1-1 :** le run « Hello » réussi, avec l'étape qui affiche la branche et l'auteur **dépliée**.
 
+[Hello au vert](../asset/images/TP1-1.png)
+
 **Questions (à traiter dans le dossier) :** Combien de temps a duré le run ? Où voit-on les logs de chaque étape ?
+
+Il a run en 9 secondes et on voit les logs de chaque étapes dans les jobs du workflow.
 
 > Indice : la structure minimale est `name`, `on`, `jobs`, puis `runs-on` et `steps`.
 
@@ -73,6 +77,8 @@ puis recommencez le `git push`.
 
 > 📸 **TP1-2 :** le run `ci.yml` réussi, avec la liste des étapes visible.
 
+[ci.yml au vert](../asset/images/TP1-2.png)
+
 > Rappel : un workflow démarre sur une machine **vide**. Si une étape manque (checkout, Python, dépendances), les suivantes échouent.
 
 ---
@@ -88,9 +94,16 @@ puis recommencez le `git push`.
 4. Corrigez, poussez : retour au vert.
 
 > 📸 **TP1-3 :** le run rouge, avec l'étape `pytest` dépliée et le message d'erreur lisible.
+
+[pytest au rouge](../asset/images/TP1-3.png)
+
 > 📸 **TP1-4 :** le run vert qui suit la correction.
 
+[coorigé](../asset/images/TP1-4.png)
+
 **Questions (à traiter dans le dossier) :** Quel test a échoué ? À quelle ligne ? Qu'est-ce qui a permis de le trouver rapidement ?
+
+Le test qui a échoué est les tests nommés : test_is_valid_title_accepts_normal_title et test_add_and_list_tasks. Ils sont a lignes 26 et 35. On peut les trouver car dans le workflow on nous donne lesquels ne sont pas passés
 
 ---
 
@@ -106,10 +119,20 @@ puis recommencez le `git push`.
 ```
 
 > 📸 **TP1-5 :** la pull request avec les vérifications (checks) vertes, avant la fusion.
+
+[PR avant fusion](../asset/images/TP1-5.png)
+
 > 📸 **TP1-6 :** la pull request fusionnée.
+
+[PR fusionné dans l'historique](../asset/images/TP1-6.png)
+
 > 📸 **TP1-7 :** le `README.md` sur GitHub avec le badge affiché.
 
+[Badge sur le readme](../asset/images/TP1-7.png)
+
 **Question (à traiter dans le dossier) :** Pourquoi attend-on que la CI soit verte avant de fusionner ?
+
+Car si on attend pas, les tests pourraient ne plus passé et donc signifié que le code casse l'existant et donc ne pas le merge
 
 ---
 
