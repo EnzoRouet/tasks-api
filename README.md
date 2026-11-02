@@ -1,6 +1,4 @@
-```markdown
 ![CI](https://github.com/<votre-compte>/tasks-api/actions/workflows/ci.yml/badge.svg)
-```
 
 # tasks-api : fil rouge du cours GitOps & CI/CD
 
