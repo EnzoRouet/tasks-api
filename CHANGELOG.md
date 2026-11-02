@@ -4,4 +4,5 @@
 
 - Version initiale de l'API tasks-api.
 
+Feature B qui fait plein de trucs hyper méga trop bien
 Feature A qui fait un truc trop bien
