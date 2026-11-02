@@ -1,0 +1,10 @@
+name: Hello
+
+on: push
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Le push a bien été envoyer"
+      - run: echo "Branche ${{ github.ref_name }}"
+      - run: echo "Auteur ${{ github.actor }}"
