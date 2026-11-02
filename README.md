@@ -1,3 +1,7 @@
+```markdown
+![CI](https://github.com/<votre-compte>/tasks-api/actions/workflows/ci.yml/badge.svg)
+```
+
 # tasks-api : fil rouge du cours GitOps & CI/CD
 
 Petite API Flask de gestion de tâches. On ne travaille pas sur l'application elle-même :
@@ -10,7 +14,7 @@ c'est un **prétexte** pour apprendre à automatiser les tests, la construction 
 Sur la page GitHub de ce dépôt, cliquez sur **Use this template**, puis **Create a new repository**.
 Nommez-le `tasks-api` et laissez-le **Public** (GitHub Actions est gratuit sur les dépôts publics).
 
-> Préférez le modèle (*template*) au *fork* : avec un fork, GitHub désactive les workflows
+> Préférez le modèle (_template_) au _fork_ : avec un fork, GitHub désactive les workflows
 > jusqu'à ce que vous cliquiez sur « I understand my workflows, go ahead and enable them » dans l'onglet Actions.
 
 ### 2. Cloner votre dépôt
@@ -22,9 +26,9 @@ cd tasks-api
 
 ### 3. Créer l'environnement Python et installer les dépendances
 
-| | macOS | Linux | Windows (PowerShell) |
-|---|---|---|---|
-| Créer | `python3.12 -m venv .venv` | `python3 -m venv .venv` | `py -3.12 -m venv .venv` |
+|         | macOS                       | Linux                       | Windows (PowerShell)         |
+| ------- | --------------------------- | --------------------------- | ---------------------------- |
+| Créer   | `python3.12 -m venv .venv`  | `python3 -m venv .venv`     | `py -3.12 -m venv .venv`     |
 | Activer | `source .venv/bin/activate` | `source .venv/bin/activate` | `.venv\Scripts\Activate.ps1` |
 
 Une fois l'environnement activé (votre terminal affiche `(.venv)`), c'est identique partout :
@@ -49,8 +53,8 @@ python -m app.main
 
 Dans un **second terminal** :
 
-| macOS / Linux | Windows (PowerShell) |
-|---|---|
+| macOS / Linux                       | Windows (PowerShell)                    |
+| ----------------------------------- | --------------------------------------- |
 | `curl http://localhost:8000/health` | `curl.exe http://localhost:8000/health` |
 
 Vous devez lire `{"status":"ok"}`. Arrêtez l'application avec `Ctrl + C`.
@@ -59,17 +63,17 @@ Vous devez lire `{"status":"ok"}`. Arrêtez l'application avec `Ctrl + C`.
 
 ## Structure
 
-| Chemin | Rôle | Quand on y touche |
-|---|---|---|
-| `app/` | Le code de l'API | Jamais (sauf pour casser un test volontairement) |
-| `tests/` | Les tests pytest | J1, J2 |
-| `.github/workflows/` | Vos workflows GitHub Actions | **J1 à J3** |
-| `Dockerfile` | À compléter | J3 |
-| `pipelines-a-reparer/` | Trois pipelines cassés à réparer | Fin du J2 |
-| `config-repo/` | Modèle du dépôt de configuration Kubernetes | J4 |
-| `argocd/` | Déclaration de l'application pour Argo CD | J4 |
-| `scripts/` | Script utilisé par le pipeline au J4 | Ne pas toucher |
-| `docs/` | Énoncés des TP (TP1 à TP4) et modèle de dossier | Tous les jours |
+| Chemin                 | Rôle                                            | Quand on y touche                                |
+| ---------------------- | ----------------------------------------------- | ------------------------------------------------ |
+| `app/`                 | Le code de l'API                                | Jamais (sauf pour casser un test volontairement) |
+| `tests/`               | Les tests pytest                                | J1, J2                                           |
+| `.github/workflows/`   | Vos workflows GitHub Actions                    | **J1 à J3**                                      |
+| `Dockerfile`           | À compléter                                     | J3                                               |
+| `pipelines-a-reparer/` | Trois pipelines cassés à réparer                | Fin du J2                                        |
+| `config-repo/`         | Modèle du dépôt de configuration Kubernetes     | J4                                               |
+| `argocd/`              | Déclaration de l'application pour Argo CD       | J4                                               |
+| `scripts/`             | Script utilisé par le pipeline au J4            | Ne pas toucher                                   |
+| `docs/`                | Énoncés des TP (TP1 à TP4) et modèle de dossier | Tous les jours                                   |
 
 ## Endpoints
 
