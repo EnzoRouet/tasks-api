@@ -1,4 +1,5 @@
 """Logique métier de l'application (fonctions pures, faciles à tester)."""
+import os
 
 MAX_TITLE_LENGTH = 80
 
