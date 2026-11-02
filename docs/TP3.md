@@ -17,9 +17,9 @@ créer une version (release) par un tag Git, et déployer avec une approbation a
 
 ### Les commandes qui changent selon votre système
 
-| Action | macOS / Linux | Windows (PowerShell) |
-|---|---|---|
-| Appeler l'API | `curl http://localhost:8000/health` | `curl.exe http://localhost:8000/health` |
+| Action                                 | macOS / Linux                                       | Windows (PowerShell)                                                |
+| -------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------- |
+| Appeler l'API                          | `curl http://localhost:8000/health`                 | `curl.exe http://localhost:8000/health`                             |
 | Définir une variable pour une commande | `GITHUB_OWNER=moi IMAGE_TAG=0.1.0 docker compose …` | `$env:GITHUB_OWNER="moi"; $env:IMAGE_TAG="0.1.0"; docker compose …` |
 
 ---
@@ -36,6 +36,7 @@ docker run --rm -p 8000:8000 tasks-api:local
 Dans un autre terminal : appelez `/health` et `/version`. Arrêtez avec `Ctrl + C`.
 
 Contrôles :
+
 - `docker images tasks-api` : notez la taille de l'image ;
 - modifiez un fichier de `app/`, reconstruisez : quelles étapes sont « CACHED » ? Pourquoi `requirements.txt` est-il copié **avant** le code ?
 
@@ -48,6 +49,7 @@ Contrôles :
 ## Partie 2 : Docker Compose (20 min)
 
 Créez `docker-compose.yml` avec un service `api` qui :
+
 - construit l'image du dossier courant ;
 - publie le port 8000 ;
 - définit la variable d'environnement `APP_VERSION` à `local`.
@@ -72,6 +74,7 @@ Créez `.github/workflows/docker.yml` avec **deux jobs** :
 2. `build` (après `test`, avec `needs: test`) : se connecte à GHCR, construit l'image et la **pousse**.
 
 Aide, étape par étape :
+
 - déclencheurs : `push` sur `main`, `push` de tags `v*`, et `workflow_dispatch` ;
 - le job `build` demande la permission `packages: write` ;
 - actions à utiliser : `docker/setup-buildx-action@v4`, `docker/login-action@v4` (registre `ghcr.io`,
@@ -108,7 +111,6 @@ git push origin v0.1.0
 ```bash
 docker run --rm -p 8000:8000 ghcr.io/<votre-compte-minuscules>/tasks-api:0.1.0
 ```
-
 
 > 📸 **TP3-5 :** la liste des tags du package (`0.1.0` et `sha-…`).
 > 📸 **TP3-6 :** `docker run` de l'image **téléchargée depuis GHCR** et `curl /version` qui répond `0.1.0`.

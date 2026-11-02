@@ -31,6 +31,8 @@ cache, protection de la branche `main`, travail à deux sur un même dépôt et 
 
 **Questions :** Quelle différence entre un linter (flake8) et un formateur (black) ? Pourquoi séparer `lint` et `test` en deux jobs ?
 
+Le linter sert a trouver des problèmes dans le code ou bien des trucs inutilisés tandis que le formateur lui réorganise le code selon les conventions qu'on lui a imposer
+
 ---
 
 ## Partie 2 : Matrix, cache et artefact (35 min)
@@ -40,7 +42,9 @@ cache, protection de la branche `main`, travail à deux sur un même dépôt et 
 2. Activez le **cache** de pip : dans `actions/setup-python`, ajoutez `cache: pip`.
 3. Poussez deux fois de suite. Au 2ᵉ run, ouvrez l'étape setup-python : vous devez lire que le cache a été restauré.
 4. Générez un rapport de couverture (`--cov-report=xml`) et publiez-le comme **artefact** avec `actions/upload-artifact@v7`
+
    (uniquement pour la version 3.12 : `if: matrix.python-version == '3.12'`).
+
 5. Téléchargez l'artefact depuis la page du run.
 
 > 📸 **TP2-3 :** la liste des 3 jobs de la matrice (`test (3.11)`, `test (3.12)`, `test (3.13)`).
@@ -53,7 +57,7 @@ cache, protection de la branche `main`, travail à deux sur un même dépôt et 
 ## Partie 3 : Protéger la branche main (15 min)
 
 1. Sur GitHub : **Settings → Branches** (ou **Rules → Rulesets**) → créez une règle pour la branche `main`.
-2. Cochez : *Require a pull request before merging* et *Require status checks to pass before merging*.
+2. Cochez : _Require a pull request before merging_ et _Require status checks to pass before merging_.
 3. Choisissez comme vérifications obligatoires : `lint` et `test (3.12)`.
    (Un contrôle n'apparaît dans la liste que s'il a tourné récemment : lancez la CI avant.)
 4. Ouvrez une PR depuis `tp2` qui fait échouer volontairement un test, et constatez que la fusion est **bloquée**.
@@ -74,7 +78,7 @@ cache, protection de la branche `main`, travail à deux sur un même dépôt et 
 1. A et B partent **tous les deux** de `main` à jour et créent chacun une branche (`entree-a`, `entree-b`).
 2. Chacun ajoute **une ligne différente** sous « Non publié » dans `CHANGELOG.md`, au **même endroit** (juste sous la première ligne).
 3. Chacun pousse sa branche et ouvre une pull request vers `main`.
-4. **A fusionne** sa PR (CI verte). La PR de B affiche maintenant : *This branch has conflicts*.
+4. **A fusionne** sa PR (CI verte). La PR de B affiche maintenant : _This branch has conflicts_.
 5. **B résout le conflit** dans son terminal :
 
 ```bash
