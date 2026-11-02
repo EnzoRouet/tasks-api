@@ -2,10 +2,10 @@
 
 ## L'évaluation en bref
 
-| Élément | Poids |
-|---|---|
-| Dossier de TP (ce document) | **10 points sur 20** (50 %) : dossier complet et correct = 10/10 |
-| QCM (20 questions, 30 minutes, jeudi 5 novembre, en fin de journée) | **10 points sur 20** (50 %) |
+| Élément                                                             | Poids                                                            |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Dossier de TP (ce document)                                         | **10 points sur 20** (50 %) : dossier complet et correct = 10/10 |
+| QCM (20 questions, 30 minutes, jeudi 5 novembre, en fin de journée) | **10 points sur 20** (50 %)                                      |
 
 Le dossier rassemble **tous les TP de la semaine**, avec des captures d'écran et vos explications.
 Vous le construisez **au fil des jours** : ne gardez pas tout pour le jeudi soir !
@@ -34,15 +34,15 @@ Pour **chaque TP**, trois choses :
 
 ## TP1 : captures et questions
 
-| N° | Capture à fournir |
-|---|---|
-| TP1-1 | Le run « Hello » réussi, étape « branche / auteur » dépliée |
-| TP1-2 | Le run `ci.yml` réussi, avec la liste des étapes |
+| N°    | Capture à fournir                                             |
+| ----- | ------------------------------------------------------------- |
+| TP1-1 | Le run « Hello » réussi, étape « branche / auteur » dépliée   |
+| TP1-2 | Le run `ci.yml` réussi, avec la liste des étapes              |
 | TP1-3 | Le run rouge, étape `pytest` dépliée avec le message d'erreur |
-| TP1-4 | Le run vert après la correction |
-| TP1-5 | La pull request avec les vérifications vertes, avant fusion |
-| TP1-6 | La pull request fusionnée |
-| TP1-7 | Le `README.md` sur GitHub avec le badge affiché |
+| TP1-4 | Le run vert après la correction                               |
+| TP1-5 | La pull request avec les vérifications vertes, avant fusion   |
+| TP1-6 | La pull request fusionnée                                     |
+| TP1-7 | Le `README.md` sur GitHub avec le badge affiché               |
 
 Questions à traiter :
 
@@ -52,47 +52,47 @@ Questions à traiter :
 
 ## TP2 : captures
 
-| N° | Capture à fournir |
-|---|---|
-| TP2-1 | un run vert montrant les deux jobs `lint` et `test`. |
-| TP2-2 | le job `lint` rouge, avec le message de flake8 lisible. |
-| TP2-3 | la liste des 3 jobs de la matrice (`test (3.11)`, `test (3.12)`, `test (3.13)`). |
-| TP2-4 | l'étape setup-python du 2ᵉ run, avec la mention du cache restauré, et la section « Artifacts » de la page du run. |
-| TP2-5 | la page de la règle de protection avec les vérifications obligatoires. |
-| TP2-6 | une PR dont la fusion est bloquée par une vérification en échec. |
-| TP2-7 | la PR de B avec le message de conflit. |
-| TP2-8 | le fichier `CHANGELOG.md` final sur `main` contenant les deux lignes. |
-| TP2-9 | les logs où la valeur du secret apparaît masquée par `***`. |
-| TP2-10 | le run en échec de chaque pipeline (une capture par pipeline, nommées TP2-10A, TP2-10B, TP2-10C). |
-| TP2-11 | la liste des runs montrant vos trois pipelines réparés au vert. |
+| N°     | Capture à fournir                                                                                                 |
+| ------ | ----------------------------------------------------------------------------------------------------------------- |
+| TP2-1  | un run vert montrant les deux jobs `lint` et `test`.                                                              |
+| TP2-2  | le job `lint` rouge, avec le message de flake8 lisible.                                                           |
+| TP2-3  | la liste des 3 jobs de la matrice (`test (3.11)`, `test (3.12)`, `test (3.13)`).                                  |
+| TP2-4  | l'étape setup-python du 2ᵉ run, avec la mention du cache restauré, et la section « Artifacts » de la page du run. |
+| TP2-5  | la page de la règle de protection avec les vérifications obligatoires.                                            |
+| TP2-6  | une PR dont la fusion est bloquée par une vérification en échec.                                                  |
+| TP2-7  | la PR de B avec le message de conflit.                                                                            |
+| TP2-8  | le fichier `CHANGELOG.md` final sur `main` contenant les deux lignes.                                             |
+| TP2-9  | les logs où la valeur du secret apparaît masquée par `***`.                                                       |
+| TP2-10 | le run en échec de chaque pipeline (une capture par pipeline, nommées TP2-10A, TP2-10B, TP2-10C).                 |
+| TP2-11 | la liste des runs montrant vos trois pipelines réparés au vert.                                                   |
 
 ## TP3 : captures
 
-| N° | Capture à fournir |
-|---|---|
-| TP3-1 | le `docker build` réussi, puis `curl` sur `/health` qui répond `{"status":"ok"}`. |
-| TP3-2 | `docker compose up` en cours et le `curl` sur `/version`. |
-| TP3-3 | le run avec `test` puis `build` au vert. |
-| TP3-4 | la page du package `tasks-api` avec son tag `sha-…`. |
-| TP3-5 | la liste des tags du package (`0.1.0` et `sha-…`). |
-| TP3-6 | `docker run` de l'image **téléchargée depuis GHCR** et `curl /version` qui répond `0.1.0`. |
+| N°    | Capture à fournir                                                                            |
+| ----- | -------------------------------------------------------------------------------------------- |
+| TP3-1 | le `docker build` réussi, puis `curl` sur `/health` qui répond `{"status":"ok"}`.            |
+| TP3-2 | `docker compose up` en cours et le `curl` sur `/version`.                                    |
+| TP3-3 | le run avec `test` puis `build` au vert.                                                     |
+| TP3-4 | la page du package `tasks-api` avec son tag `sha-…`.                                         |
+| TP3-5 | la liste des tags du package (`0.1.0` et `sha-…`).                                           |
+| TP3-6 | `docker run` de l'image **téléchargée depuis GHCR** et `curl /version` qui répond `0.1.0`.   |
 | TP3-7 | le run en attente d'approbation (« Waiting » / « Review deployments »), puis le run terminé. |
-| TP3-8 | la sortie de la commande `id` dans le conteneur. |
+| TP3-8 | la sortie de la commande `id` dans le conteneur.                                             |
 
 ## TP4 : captures
 
-| N° | Capture à fournir |
-|---|---|
-| TP4-1 | `kubectl get nodes` (un nœud `Ready`). |
-| TP4-2 | `kubectl get pods -n argocd` (tous `Running`) et la page de connexion d'Argo CD. |
-| TP4-3 | l'application dans Argo CD, état Synced et Healthy, avec ses 2 pods. |
-| TP4-4 | la réponse de `/version` obtenue dans le cluster. |
-| TP4-5 | le commit sur `replicas: 3` et les 3 pods dans Argo CD. |
-| TP4-6 | les pods juste après le `kubectl scale` à 5, puis après la correction automatique (deux captures). |
-| TP4-7 | l'historique des commits de `tasks-config` avec le `revert`, et le retour à 2 pods. |
-| TP4-8 | le run complet avec tous les jobs au vert, `update-config` compris. |
-| TP4-9 | le commit automatique dans `tasks-config` et Argo CD synchronisé sur `0.2.0`. |
-| TP4-10 | `/version` qui répond `0.2.0`. |
+| N°     | Capture à fournir                                                                                  |
+| ------ | -------------------------------------------------------------------------------------------------- |
+| TP4-1  | `kubectl get nodes` (un nœud `Ready`).                                                             |
+| TP4-2  | `kubectl get pods -n argocd` (tous `Running`) et la page de connexion d'Argo CD.                   |
+| TP4-3  | l'application dans Argo CD, état Synced et Healthy, avec ses 2 pods.                               |
+| TP4-4  | la réponse de `/version` obtenue dans le cluster.                                                  |
+| TP4-5  | le commit sur `replicas: 3` et les 3 pods dans Argo CD.                                            |
+| TP4-6  | les pods juste après le `kubectl scale` à 5, puis après la correction automatique (deux captures). |
+| TP4-7  | l'historique des commits de `tasks-config` avec le `revert`, et le retour à 2 pods.                |
+| TP4-8  | le run complet avec tous les jobs au vert, `update-config` compris.                                |
+| TP4-9  | le commit automatique dans `tasks-config` et Argo CD synchronisé sur `0.2.0`.                      |
+| TP4-10 | `/version` qui répond `0.2.0`.                                                                     |
 
 Les **questions à traiter** sont dans l'énoncé de chaque TP (lignes « Question(s) »). Répondez-y avec vos mots dans le dossier.
 

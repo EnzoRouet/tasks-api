@@ -19,11 +19,11 @@ et vous savez lire un run GitHub Actions, y compris quand il échoue.
 
 ### Les commandes qui changent selon votre système
 
-| Action | macOS | Linux | Windows (PowerShell) |
-|---|---|---|---|
-| Créer l'environnement | `python3.12 -m venv .venv` | `python3 -m venv .venv` | `py -3.12 -m venv .venv` |
-| L'activer | `source .venv/bin/activate` | `source .venv/bin/activate` | `.venv\Scripts\Activate.ps1` |
-| Appeler l'API | `curl http://localhost:8000/health` | `curl http://localhost:8000/health` | `curl.exe http://localhost:8000/health` |
+| Action                | macOS                               | Linux                               | Windows (PowerShell)                    |
+| --------------------- | ----------------------------------- | ----------------------------------- | --------------------------------------- |
+| Créer l'environnement | `python3.12 -m venv .venv`          | `python3 -m venv .venv`             | `py -3.12 -m venv .venv`                |
+| L'activer             | `source .venv/bin/activate`         | `source .venv/bin/activate`         | `.venv\Scripts\Activate.ps1`            |
+| Appeler l'API         | `curl http://localhost:8000/health` | `curl http://localhost:8000/health` | `curl.exe http://localhost:8000/health` |
 
 Tout le reste (`git`, `gh`, `pytest`, `pip`) est identique sur les trois systèmes.
 
