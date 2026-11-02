@@ -16,7 +16,7 @@ jobs:
       - run: pip install -r requirements-dev.txt
 
       - run: flake8 .
-      - run: black --check
+      - run: black --check app/
 
   test:
     runs-on: ubuntu-latest
