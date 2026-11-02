@@ -42,7 +42,9 @@ Le linter sert a trouver des problèmes dans le code ou bien des trucs inutilis�
 2. Activez le **cache** de pip : dans `actions/setup-python`, ajoutez `cache: pip`.
 3. Poussez deux fois de suite. Au 2ᵉ run, ouvrez l'étape setup-python : vous devez lire que le cache a été restauré.
 4. Générez un rapport de couverture (`--cov-report=xml`) et publiez-le comme **artefact** avec `actions/upload-artifact@v7`
+
    (uniquement pour la version 3.12 : `if: matrix.python-version == '3.12'`).
+
 5. Téléchargez l'artefact depuis la page du run.
 
 > 📸 **TP2-3 :** la liste des 3 jobs de la matrice (`test (3.11)`, `test (3.12)`, `test (3.13)`).
