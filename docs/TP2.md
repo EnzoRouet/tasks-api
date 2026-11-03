@@ -27,11 +27,17 @@ cache, protection de la branche `main`, travail à deux sur un même dépôt et 
 5. Corrigez, poussez : retour au vert.
 
 > 📸 **TP2-1 :** un run vert montrant les deux jobs `lint` et `test`.
+
+[Les deux jobs au vert](../asset/images/TP2/TP2-1.png)
+
 > 📸 **TP2-2 :** le job `lint` rouge, avec le message de flake8 lisible.
+
+[lint rouge](../asset/images/TP2/TP2-2.png)
 
 **Questions :** Quelle différence entre un linter (flake8) et un formateur (black) ? Pourquoi séparer `lint` et `test` en deux jobs ?
 
-Le linter sert a trouver des problèmes dans le code ou bien des trucs inutilisés tandis que le formateur lui réorganise le code selon les conventions qu'on lui a imposer
+Le linter sert a trouver des problèmes dans le code ou bien des trucs inutilisés tandis que le formateur lui réorganise le code selon les conventions qu'on lui a imposer.
+Les séparer permet de faire run chacun de leur coté comme ca le coté fonctionnel est identifier et le coté propreté de code aussi, ca permet de pas bloquer l'un pour les problèmes de l'autres et donc identifier plus facilement.
 
 ---
 
@@ -48,9 +54,17 @@ Le linter sert a trouver des problèmes dans le code ou bien des trucs inutilis�
 5. Téléchargez l'artefact depuis la page du run.
 
 > 📸 **TP2-3 :** la liste des 3 jobs de la matrice (`test (3.11)`, `test (3.12)`, `test (3.13)`).
+
+[matrice](../asset/images/TP2/TP2-3.png)
+
 > 📸 **TP2-4 :** l'étape setup-python du 2ᵉ run, avec la mention du cache restauré, et la section « Artifacts » de la page du run.
 
+[cache](../asset/images/TP2/TP2-4-1.png)
+[artefact](../asset/images/TP2/TP2-4-2.png)
+
 **Questions :** Pourquoi tester sur plusieurs versions de Python ? Que gagne-t-on avec le cache ? Un artefact, c'est quoi ?
+
+On teste sur plusieurs versions car ca permet de vérifier avce les autres versions que ce soit la supérieure ou l'inférieure et donc vérifier la compatibilité, avec le cache on gagne en vitesse d'exécution des test et un peu en ram car on redl pas tout, un artefact c'est un fichier crée par un workflow
 
 ---
 
@@ -64,9 +78,16 @@ Le linter sert a trouver des problèmes dans le code ou bien des trucs inutilis�
 5. Corrigez : le bouton de fusion se débloque.
 
 > 📸 **TP2-5 :** la page de la règle de protection avec les vérifications obligatoires.
+
+[regle de protection](../asset/images/TP2/TP2-5.png)
+
 > 📸 **TP2-6 :** une PR dont la fusion est bloquée par une vérification en échec.
 
+[Echec PR](../asset/images/TP2/TP2-6.png)
+
 **Question :** Pourquoi interdire de pousser directement sur `main` ?
+
+Car cela évite d'envoyer du code non review directement sur la prod ou la branche importante et cela force un minimum de review pour eviter aussi les actions sans faire exprès et pouvoir vérifier que tous les tests passent avant de push sur la main donc pas cassé l'existant.
 
 ---
 
@@ -93,11 +114,18 @@ git push
 6. La CI repasse au vert sur la PR de B ; B fusionne.
 
 > 📸 **TP2-7 :** la PR de B avec le message de conflit.
+
+[PR avec conflit](../asset/images/TP2/TP2-7.png)
+
 > 📸 **TP2-8 :** le fichier `CHANGELOG.md` final sur `main` contenant les deux lignes.
+
+[Fichier avec les deux lignes](../asset/images/TP2/TP2-8.png)
 
 **Si vous êtes seul :** créez vous-même deux branches depuis `main`, modifiez la même ligne de `CHANGELOG.md` sur chacune, fusionnez la première puis résolvez le conflit sur la seconde.
 
 **Questions :** Pourquoi Git ne peut-il pas résoudre ce conflit seul ? Qu'est-ce qui a vérifié le code après la résolution ?
+
+Car git ne peut pas savoir ce qui doit être garder ou non fin il capte pas si celui qui a raison c'est le dev A ou le dev B. Une personne a vérifier le code pour régler le conflit et après bah c'est les workflow mis en place qui ont été run
 
 ---
 
@@ -114,9 +142,14 @@ git push
 3. Lancez le workflow depuis l'onglet Actions (**Run workflow**) et ouvrez les logs.
 
 > 📸 **TP2-9 :** les logs où la valeur du secret apparaît masquée par `***`.
+
+[Logs secret](../asset/images/TP2/TP2-9.png)
+
 > ⚠️ Ne mettez **jamais** un vrai secret dans une capture ou dans le code.
 
 **Questions :** Pourquoi GitHub masque-t-il le secret ? Que se passe-t-il si on le commite dans le dépôt ? Secret ou variable : comment choisir ?
+
+Pour empecher la fuite du secret, si on le commit dans le répo ce secret devient public et donc est compromis, on choisit secret si la donnée est sensible sinon on fait variable
 
 ---
 
@@ -125,9 +158,24 @@ git push
 Dans le dossier `pipelines-a-reparer/` : trois workflows (A, B, C) avec **un bug chacun**. Suivez `pipelines-a-reparer/LISEZMOI.md`.
 
 > 📸 **TP2-10 :** le run en échec de chaque pipeline (une capture par pipeline, nommées TP2-10A, TP2-10B, TP2-10C).
+
+[pipeline A](../asset/images/TP2/TP2-10A.png)
+[pipeline B](../asset/images/TP2/TP2-10B.png)
+[pipeline C](../asset/images/TP2/TP2-10C.png)
+
 > 📸 **TP2-11 :** la liste des runs montrant vos trois pipelines réparés au vert.
 
+[pipeline A corrigé](../asset/images/TP2/TP2-11A.png)
+[pipeline B corrigé](../asset/images/TP2/TP2-11B.png)
+[pipeline C corrigé](../asset/images/TP2/TP2-11C.png)
+
 **Questions :** Pour chaque pipeline : quel était le bug, comment l'avez-vous trouvé, comment l'éviter à l'avenir ?
+
+La pipeline A y'avais une mauvaise indentation, on pouvait le voir dans le fichier c'était en rouge et sinon dans le run du workflow on nous indiquait qu'il y avait une erreur, pour l'éviter être plus attentif
+
+La pipeline B il manquais la récupération du code avec checkout, j'ai parcouru le fichier et regarder ce qu'il manquait mais surtout dans le run on nous disait que le bot n'avait pas réussi a faire le dl du requirement-dev.txt donc c'était forcément qu'il ne l'avais pas récupérer et donc pas récupérer le code, pour l'éviter peut-être garder un schéma des trucs requis pour chaque job comme ca on est sur de pas oublier
+
+La pipeline C il manquais des guillemets dans le tableau de la matrix de version donc il a mal interpréter le 3.10 en 3.1, je l'ai vu dans le run du workflow qu'il interprétais en 3.1 et donc qu'il manquait les guillemets, réviser son cours c'est écris dedans qu'il faut mettre des guillemets
 
 ---
 
