@@ -3,7 +3,7 @@ name: CI
 on: push
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,4 +14,32 @@ jobs:
           python-version: "3.12"
 
       - run: pip install -r requirements-dev.txt
-      - run: pytest
+
+      - run: flake8 .
+      - run: black --check app/
+
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "${{ matrix.python-version }}"
+          cache: pip
+
+      - run: pip install -r requirements-dev.txt
+      - run: pytest --cov=app --cov-fail-under=80 --cov-report=xml
+
+      - name: Test
+        if: matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report
+          path: coverage.xml
