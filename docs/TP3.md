@@ -42,7 +42,13 @@ Contrôles :
 
 > 📸 **TP3-1 :** le `docker build` réussi, puis `curl` sur `/health` qui répond `{"status":"ok"}`.
 
+[docker build](../asset/images/TP3/TP3-1-1.png)
+
+[curl health](../asset/images/TP3/TP3-1-2.png)
+
 **Questions :** Différence entre une image et un conteneur ? À quoi sert le `.dockerignore` ?
+
+Un image c'est un modèle qu'on utilise pour faire un conteneur, Donc le conteneur lui se sert du modèle pour tourner, il permet de faire comme un gitignore mais pour docker donc cacher des fichier a docker
 
 ---
 
@@ -62,7 +68,13 @@ Vérifiez que `/version` répond `local`, puis `docker compose down`.
 
 > 📸 **TP3-2 :** `docker compose up` en cours et le `curl` sur `/version`.
 
+[docker compose up](../asset/images/TP3/TP3-2-1.png)
+
+[curl version](../asset/images/TP3/TP3-2-2.png)
+
 **Question :** Que gagne-t-on à décrire le lancement dans un fichier plutôt que dans une longue commande ?
+
+Cela permet de le lancer plus facilement et que tout le monde puisse le lancer meme le mec qui connait pas les flags de base a mettre fin les options
 
 ---
 
@@ -88,9 +100,16 @@ Aide, étape par étape :
 Poussez sur `main`, puis allez voir votre profil GitHub → **Packages**.
 
 > 📸 **TP3-3 :** le run avec `test` puis `build` au vert.
+
+[les run au vert](../asset/images/TP3/TP3-3.png)
+
 > 📸 **TP3-4 :** la page du package `tasks-api` avec son tag `sha-…`.
 
+[page du package](../asset/images/TP3/TP3-4.png)
+
 **Questions :** Pourquoi `build` attend-il `test` ? Pourquoi éviter le tag `latest` en production ?
+
+Car pour build il faut que les test passe sinon ca veut dire qu'il y a une erreur donc on build pas ca sert a rien, car on pourra pas revenir en arrière si on a pas le tag exact de la version d'avant et car on peut avoir deux serveur qui utilisent pas le même package car entre temps de déploiement l'un a pris le dernier push et l'autre non
 
 ---
 
@@ -113,9 +132,18 @@ docker run --rm -p 8000:8000 ghcr.io/<votre-compte-minuscules>/tasks-api:0.1.0
 ```
 
 > 📸 **TP3-5 :** la liste des tags du package (`0.1.0` et `sha-…`).
+
+[liste des tags](../asset/images/TP3/TP3-5.png)
+
 > 📸 **TP3-6 :** `docker run` de l'image **téléchargée depuis GHCR** et `curl /version` qui répond `0.1.0`.
 
+[docker run](../asset/images/TP3/TP3-6-1.png)
+
+[curl](../asset/images/TP3/TP3-6-2.png)
+
 **Question :** Quel est l'avantage d'une image versionnée par rapport à « le code de ma machine » ?
+
+Car ca permet d'avoir une version unifié qui fonctionne pour tout le monde et pas de ca marche sur ma machine
 
 ---
 
@@ -133,7 +161,13 @@ Créez `v0.1.1` (nouveau tag) : le pipeline passe sur staging, puis **attend vot
 
 > 📸 **TP3-7 :** le run en attente d'approbation (« Waiting » / « Review deployments »), puis le run terminé.
 
+[En attente](../asset/images/TP3/TP3-7-1.png)
+
+[deploy](../asset/images/TP3/TP3-7-2.png)
+
 **Questions :** À quoi sert un test de fumée ? Pourquoi demander une approbation humaine avant la production ?
+
+Ca permet de vérifier direct si le serveur tourne et qu'il peut recevoir des requêtes, cela permet de vérifier que tout est bon et qu'une personne qui a les autorisation pour pousser sur la main valide pour la prod
 
 ---
 
@@ -145,7 +179,11 @@ Créez `v0.1.1` (nouveau tag) : le pipeline passe sur staging, puis **attend vot
 
 > 📸 **TP3-8 :** la sortie de la commande `id` dans le conteneur.
 
+[id](../asset/images/TP3/TP3-8.png)
+
 **Question :** Pourquoi ne pas exécuter une application en root dans un conteneur ?
+
+Pour des raisons de sécurité, car un user a moins de privilèges qu'un admin donc si on pirate le compte bah on aura moins de problèmes
 
 ---
 
