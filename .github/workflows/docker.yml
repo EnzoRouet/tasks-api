@@ -145,3 +145,35 @@ jobs:
           done
           echo "Échec du test de fumée en production !"
           exit 1
+
+  update-config:
+    needs: deploy-production
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Checkout du dépôt applicatif
+        uses: actions/checkout@v6
+
+      - name: Checkout du dépôt de configuration
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ github.repository_owner }}/tasks-config
+          token: ${{ secrets.CONFIG_REPO_TOKEN }}
+          path: config
+
+      - name: Mettre à jour la version de l'image
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          CLEAN_VERSION="${VERSION#v}"
+          bash scripts/set-image-tag.sh config/k8s/deployment.yaml "$CLEAN_VERSION"
+
+      - name: Commit et push sur tasks-config
+        run: |
+          cd config
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add k8s/deployment.yaml
+          git commit -m "ci: update image tag to ${GITHUB_REF_NAME#v}" || exit 0
+          git push origin main
