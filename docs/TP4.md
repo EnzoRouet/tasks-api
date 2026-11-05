@@ -38,9 +38,18 @@ Ouvrez l'interface : dans un terminal **qui reste ouvert**, lancez `kubectl port
 puis allez sur https://localhost:8080 (acceptez l'avertissement du certificat). Utilisateur : `admin`, mot de passe : voir le tableau ci-dessus.
 
 > 📸 **TP4-1 :** `kubectl get nodes` (un nœud `Ready`).
+
+[get nodes reponse](../asset/images/TP4/TP4-1.png)
+
 > 📸 **TP4-2 :** `kubectl get pods -n argocd` (tous `Running`) et la page de connexion d'Argo CD.
 
+[get pods](../asset/images/TP4/TP4-2-1.png)
+
+[page de connexion Argo CD](../asset/images/TP4/TP4-2-2.png)
+
 **Questions :** C'est quoi un pod ? Un deployment ? Pourquoi un `namespace` ?
+
+Un pod c'est un conteneur éphémère qui tourne, un deployment c'est le fait de demandé combien de pods on veut, pour séparer les outils et les environnements
 
 ---
 
@@ -61,9 +70,16 @@ kubectl get pods -n tasks -w     # Ctrl + C pour quitter
 7. Accédez à l'API : `kubectl port-forward svc/tasks-api -n tasks 8081:80` (terminal ouvert), puis appelez `/version`.
 
 > 📸 **TP4-3 :** l'application dans Argo CD, état Synced et Healthy, avec ses 2 pods.
+
+[Argo CD avec les 2 pods](../asset/images/TP4/TP4-3.png)
+
 > 📸 **TP4-4 :** la réponse de `/version` obtenue dans le cluster.
 
+[reponse de l'api sur l'uri version](../asset/images/TP4/TP4-4.png)
+
 **Question :** Pourquoi sépare-t-on le dépôt de l'application et le dépôt de configuration ?
+
+Pour éviter de pouvoir modifier directement le nombre de replicas directement en commande et devoir faire dans git donc séparer les responsabilité
 
 ---
 
@@ -78,10 +94,22 @@ Observez : Argo CD détecte l'écart et **remet 3** (c'est `selfHeal`).
 **C. Retour arrière.** Dans `tasks-config`, faites `git revert HEAD` (annule le dernier commit), poussez : le nombre de pods revient à 2.
 
 > 📸 **TP4-5 :** le commit sur `replicas: 3` et les 3 pods dans Argo CD.
+
+[Les 3 pods](../asset/images/TP4/TP4-5.png)
+
 > 📸 **TP4-6 :** les pods juste après le `kubectl scale` à 5, puis après la correction automatique (deux captures).
+
+[Les 5 pods](../asset/images/TP4/TP4-6-1.png)
+
+[La correction automatique](../asset/images/TP4/TP4-6-2.png)
+
 > 📸 **TP4-7 :** l'historique des commits de `tasks-config` avec le `revert`, et le retour à 2 pods.
 
+[Historique commits](../asset/images/TP4/TP4-7.png)
+
 **Questions :** Que signifie `selfHeal` ? Pourquoi le retour arrière est-il simple en GitOps ?
+
+Ca signifie que tout run correctement, tout fonctionne ca répond et en accord avec ce qui est demandé, car il faut juste faire un revert pour revenir a la version antécédente
 
 ---
 
@@ -102,10 +130,34 @@ Objectif : un tag `v0.2.0` sur le dépôt applicatif doit aboutir à la nouvelle
 6. Vérifiez que `/version` répond `0.2.0`.
 
 > 📸 **TP4-8 :** le run complet avec tous les jobs au vert, `update-config` compris.
+
+[run de tous les jobs au vert](../asset/images/TP4/TP4-8.png)
+
 > 📸 **TP4-9 :** le commit automatique dans `tasks-config` et Argo CD synchronisé sur `0.2.0`.
+
+[commit automatique](../asset/images/TP4/TP4-9-1.png)
+
+[Argo CD synchro](../asset/images/TP4/TP4-9-2.png)
+
 > 📸 **TP4-10 :** `/version` qui répond `0.2.0`.
 
+[reponse de l'api sur l'uri version](../asset/images/TP4/TP4-10.png)
+
 **Questions :** Résumez en 5 lignes le chemin d'un `git tag` jusqu'au pod. Qui pousse (push) et qui tire (pull) ? Quelle différence avec un déploiement CI/CD « classique » ?
+
+Le git tag est push par le dev sur le dépot applicatif
+
+Actions lance les tests, publie le package avec le tag
+
+le job update-config execute le .sh dans /scripts et commit et push sur le dépot config
+
+Argo CD détecte le push et se réadapte en fonction de ce qui change
+
+Argo CD se sync et remplace tout bien correctement
+
+Github Actions push dans le dépot config et Argo CD pull
+
+Ici le CI n'a pas de perm sur le cluster directement sinon dans le classique on kubectl apply de la CI
 
 ---
 
